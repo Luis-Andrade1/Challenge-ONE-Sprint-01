@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width" />
+		<title>Challenge ONE Encriptador de Texto</title>
+		<link
+			rel="stylesheet"
+			href="reset.css" />
+		<link
+			rel="stylesheet"
+			href="style.css" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&display=swap"
+			rel="stylesheet" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
+			rel="stylesheet" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+			rel="stylesheet" />
+	</head>
+
+	<body>
+		<main>
+			<canvas
+				width="1440px"
+				height="1024px"></canvas>
+
+			<div class="textIntro">
+				<textarea
+					name="textIntro"
+					id="textIntro"
+					required
+					rows="14"
+					placeholder=" Ingrese el texto aquí "></textarea>
+			</div>
+			<div class="resultado">
+				<!--  -->
+				<textarea
+					readonly
+					name="resultado"
+					id="resultado"></textarea>
+			</div>
+			<div>
+				<img
+					id="muneco"
+					src="img/Muneco.jpg"
+					alt="muñeco" />
+			</div>
+			<div id="cajaMensaje">
+				<textarea
+					name="mensaje"
+					id="mensajetexto1">
+Ningún mensaje fue encontrado</textarea
+				>
+				<textarea
+					name="mensaje"
+					id="mensajetexto2">
+Ingresa el texto que desees encriptar o desencriptar.</textarea
+				>
+			</div>
+			<div id="buttons">
+				<button
+					onclick="desencriptar()"
+					id="desencriptar"
+					class="btn-desencriptar">
+					Desencriptar
+				</button>
+				<button
+					onclick="encriptar()"
+					id="encriptar"
+					class="btn-encriptar">
+					Encriptar
+				</button>
+			</div>
+			<div>
+				<button
+					onclick="cortar()"
+					id="copiar"
+					class="btn-copiar">
+					Copiar
+				</button>
+			</div>
+		</main>
+
+		<footer>
+			<p
+				class="copyrigth"
+				id="copyrigth">
+				&copy; Copyrigth Luis Andrade - 2023
+			</p>
+		</footer>
+	</body>
+	<script>
+		const text = document.getElementById("textIntro");
+		const image = document.getElementById("muneco");
+		const cajamensaje = document.getElementById("cajaMensaje");
+
+		function encriptar() {
+			let resultado = text.value.replace(/e/g, "enter").replace(/i/g, "imes").replace(/a/g, "ai").replace(/o/g, "ober").replace(/u/g, "ufat");
+
+			document.getElementById("resultado").value = resultado;
+
+			if (resultado !== "") {
+				image.style.display = "none";
+				cajamensaje.style.display = "none";
+			} else {
+				image.style.display = "block";
+				cajamensaje.style.display = "block";
+			}
+
+			text.value = "";
+		}
+		function desencriptar() {
+			let resultado = text.value.replace(/enter/g, "e").replace(/imes/g, "i").replace(/ai/g, "a").replace(/ober/g, "o").replace(/ufat/g, "u");
+
+			document.getElementById("resultado").value = resultado;
+
+			if (resultado !== "") {
+				image.style.display = "none";
+				cajamensaje.style.display = "none";
+			} else {
+				image.style.display = "block";
+				cajamensaje.style.display = "block";
+			}
+
+			text.value = "";
+		}
+
+		function cortar() {
+			let resultado = document.getElementById("resultado");
+			resultado.select();
+			document.execCommand("copy");
+			resultado.value = "";
+
+			image.style.display = "block";
+			cajamensaje.style.display = "block";
+		}
+	</script>
+</html>
