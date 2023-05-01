@@ -13,22 +13,12 @@
 			rel="stylesheet"
 			href="style.css" />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&display=swap"
-			rel="stylesheet" />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
-			rel="stylesheet" />
-		<link
 			href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
 			rel="stylesheet" />
 	</head>
 
-	<body>
+	<body onload="screan768()">
 		<main>
-			<canvas
-				width="1440px"
-				height="1024px"></canvas>
-
 			<div class="textIntro">
 				<textarea
 					name="textIntro"
@@ -94,10 +84,28 @@ Ingresa el texto que desees encriptar o desencriptar.</textarea
 			</p>
 		</footer>
 	</body>
+	<!--
+
+	
+  -->
+
 	<script>
 		const text = document.getElementById("textIntro");
 		const image = document.getElementById("muneco");
 		const cajamensaje = document.getElementById("cajaMensaje");
+		const resultado = document.getElementById("resultado").value;
+
+		function screan768() {
+			// let resultado = document.getElementById("resultado").value;
+
+			if (window.matchMedia("(max-width: 768px)").matches) {
+				image.style.display = "none";
+
+				if (resultado !== "") {
+					document.getElementById("copiar").style.display = "none";
+				}
+			}
+		}
 
 		function encriptar() {
 			let resultado = text.value.replace(/e/g, "enter").replace(/i/g, "imes").replace(/a/g, "ai").replace(/o/g, "ober").replace(/u/g, "ufat");
@@ -113,6 +121,7 @@ Ingresa el texto que desees encriptar o desencriptar.</textarea
 			}
 
 			text.value = "";
+			screan768();
 		}
 		function desencriptar() {
 			let resultado = text.value.replace(/enter/g, "e").replace(/imes/g, "i").replace(/ai/g, "a").replace(/ober/g, "o").replace(/ufat/g, "u");
@@ -128,6 +137,7 @@ Ingresa el texto que desees encriptar o desencriptar.</textarea
 			}
 
 			text.value = "";
+			screan768();
 		}
 
 		function cortar() {
@@ -138,6 +148,7 @@ Ingresa el texto que desees encriptar o desencriptar.</textarea
 
 			image.style.display = "block";
 			cajamensaje.style.display = "block";
+			screan768();
 		}
 	</script>
 </html>
