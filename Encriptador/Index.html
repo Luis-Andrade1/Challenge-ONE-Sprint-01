@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="es">
+<html
+	lang="es"
+	id="html">
 	<head>
 		<meta charset="UTF-8" />
 		<meta
@@ -17,18 +19,16 @@
 			rel="stylesheet" />
 	</head>
 
-	<body onload="screan768()">
-		<main>
+	<body onload="screen768()">
+		<main id="main">
 			<div class="textIntro">
 				<textarea
 					name="textIntro"
 					id="textIntro"
 					required
-					rows="14"
 					placeholder=" Ingrese el texto aquí "></textarea>
 			</div>
-			<div class="resultado">
-				<!--  -->
+			<div id="divresultado">
 				<textarea
 					readonly
 					name="resultado"
@@ -66,7 +66,7 @@ Ingresa el texto que desees encriptar o desencriptar.</textarea
 					Encriptar
 				</button>
 			</div>
-			<div>
+			<div id="btncopiar">
 				<button
 					onclick="cortar()"
 					id="copiar"
@@ -84,25 +84,46 @@ Ingresa el texto que desees encriptar o desencriptar.</textarea
 			</p>
 		</footer>
 	</body>
-	<!--
-
-	
-  -->
 
 	<script>
 		const text = document.getElementById("textIntro");
 		const image = document.getElementById("muneco");
 		const cajamensaje = document.getElementById("cajaMensaje");
-		const resultado = document.getElementById("resultado").value;
+		const anchoPantalla = window.innerWidth;
 
-		function screan768() {
-			// let resultado = document.getElementById("resultado").value;
+		function screen768() {
+			let resultado = document.getElementById("resultado").value;
 
-			if (window.matchMedia("(max-width: 768px)").matches) {
+			if (window.matchMedia("(min-width: 375px) and (max-width: 768px)").matches) {
 				image.style.display = "none";
 
 				if (resultado !== "") {
-					document.getElementById("copiar").style.display = "none";
+					document.getElementById("divresultado").style.height = "140px";
+					document.getElementById("btncopiar").style.display = "contents";
+					document.getElementById("copyrigth").style.top = "1384px";
+					document.getElementById("html").style.height = "1384px";
+				} else {
+					document.getElementById("btncopiar").style.display = "none";
+					document.getElementById("divresultado").style.height = "70px";
+					document.getElementById("copyrigth").style.top = "1174px";
+					document.getElementById("html").style.height = "1174px";
+				}
+			} else {
+				if (window.matchMedia("(max-width: 375px)").matches) {
+					image.style.display = "none";
+					if (resultado !== "") {
+						document.getElementById("divresultado").style.height = "595px";
+						// document.getElementById("divresultado").style.top = "1128px";
+						document.getElementById("btncopiar").style.display = "contents";
+						document.getElementById("copyrigth").style.top = "1328px";
+						document.getElementById("main").style.height = "1328px";
+					} else {
+						document.getElementById("btncopiar").style.display = "none";
+						document.getElementById("divresultado").style.height = "186px";
+						document.getElementById("divresultado").style.top = "707px";
+						document.getElementById("copyrigth").style.top = "933px";
+						document.getElementById("html").style.height = "933px";
+					}
 				}
 			}
 		}
@@ -121,7 +142,7 @@ Ingresa el texto que desees encriptar o desencriptar.</textarea
 			}
 
 			text.value = "";
-			screan768();
+			screen768();
 		}
 		function desencriptar() {
 			let resultado = text.value.replace(/enter/g, "e").replace(/imes/g, "i").replace(/ai/g, "a").replace(/ober/g, "o").replace(/ufat/g, "u");
@@ -137,18 +158,19 @@ Ingresa el texto que desees encriptar o desencriptar.</textarea
 			}
 
 			text.value = "";
-			screan768();
+			screen768();
 		}
 
 		function cortar() {
-			let resultado = document.getElementById("resultado");
+			var resultado = document.getElementById("resultado");
+
 			resultado.select();
 			document.execCommand("copy");
 			resultado.value = "";
-
 			image.style.display = "block";
 			cajamensaje.style.display = "block";
-			screan768();
+
+			screen768();
 		}
 	</script>
 </html>
